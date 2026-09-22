@@ -8,7 +8,7 @@ def monday_email():
     senders_email = "williamsmugisha17@gmail.com"
     now = dt.datetime.now()
 
-    if now.weekday() == 0:
+    if now.weekday() == 1:
         with open("quotes.txt") as file:
             quotes = file.readlines()
             quote = choice(quotes)
