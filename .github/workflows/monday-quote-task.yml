@@ -1,0 +1,26 @@
+name: My Automated Task
+
+on:
+  schedule:
+    - cron: '0 5 * * *'   # runs daily at 6:00 UTC
+  workflow_dispatch:        # lets you trigger it manually too
+  push:
+    branches: [main]        # optional: run on every push to main
+
+jobs:
+  run-task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run script
+        run: python your_script.py
