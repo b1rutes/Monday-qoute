@@ -1,11 +1,11 @@
 import smtplib
+import os
 from random import choice
 import datetime as dt
 
 def monday_email():
-    password = "vivs wjtf wmrc dnpe"
-    to_address = "williamsbirute@gmail.com"
-    senders_email = "williamsmugisha17@gmail.com"
+    email = os.environ['SENDER_EMAIL']
+    password = os.environ['PASSWORD']
     now = dt.datetime.now()
 
     if now.weekday() == 1:
@@ -13,14 +13,13 @@ def monday_email():
             quotes = file.readlines()
             quote = choice(quotes)
             message = f"Subject:Monday Quote\n\n{quote}"
-        senders_email = "williamsmugisha17@gmail.com"
 
         with smtplib.SMTP("smtp.gmail.com", 587) as connection:
             connection.starttls()
-            connection.login(user=senders_email, password=password)
+            connection.login(user=email, password=password)
             connection.sendmail(
-                from_addr= senders_email,
-                to_addrs= to_address,
+                from_addr= email,
+                to_addrs= email,
                 msg= message)
 
 
