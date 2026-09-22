@@ -8,7 +8,7 @@ def monday_email():
     password = os.environ['PASSWORD']
     now = dt.datetime.now()
 
-    if now.weekday() == 1:
+    if now.weekday() == 0:
         with open("quotes.txt") as file:
             quotes = file.readlines()
             quote = choice(quotes)
